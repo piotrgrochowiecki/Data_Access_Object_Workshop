@@ -7,3 +7,5 @@ CREATE TABLE IF NOT EXISTS users(
     password VARCHAR(60) NOT NULL,
     PRIMARY KEY (id)
 );
+
+ALTER TABLE users ADD UNIQUE (email);
