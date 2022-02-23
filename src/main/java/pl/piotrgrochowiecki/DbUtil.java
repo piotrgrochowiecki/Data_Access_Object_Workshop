@@ -14,4 +14,9 @@ public class DbUtil {
         Connection connection = DriverManager.getConnection(SERVER_URL, USER, PASSWORD);
         return connection;
     }
+
+    public static Connection connect(String dbName) throws SQLException {
+        Connection connection = DriverManager.getConnection(SERVER_URL + "/" + dbName, USER, PASSWORD);
+        return connection;
+    }
 }
