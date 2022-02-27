@@ -30,6 +30,8 @@ public class MainDao {
 
         System.out.println("userDao3.read(5).toString() = " + userDao3.read(5).toString());
 
+        userDao3.delete(5);
+
 
     }
 }

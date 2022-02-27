@@ -67,4 +67,14 @@ public class UserDao {
         }
     }
 
+    public void delete(int id) {
+        try (Connection conn = DbUtil.connect("workshop2")) {
+            PreparedStatement statement = conn.prepareStatement(DELETE_USER_BY_ID_QUERY);
+            statement.setInt(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
