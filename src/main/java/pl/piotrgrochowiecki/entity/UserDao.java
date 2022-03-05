@@ -77,6 +77,7 @@ public class UserDao {
             PreparedStatement statement = conn.prepareStatement(DELETE_USER_BY_ID_QUERY);
             statement.setInt(1, id);
             statement.executeUpdate();
+            System.out.println("User with id " + id + " has just been deleted!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
