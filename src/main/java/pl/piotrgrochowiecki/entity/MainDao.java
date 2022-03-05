@@ -34,7 +34,9 @@ public class MainDao {
 //
 //        userDao3.delete(5);
 
-        User[] users = userDao1.findAll();
-        System.out.println(Arrays.toString(users));
+//        User[] users = userDao1.findAll();
+//        System.out.println(Arrays.toString(users));
+
+        userDao1.deleteAll();
     }
 }

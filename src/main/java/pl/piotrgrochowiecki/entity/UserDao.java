@@ -15,6 +15,7 @@ public class UserDao {
     private static final String UPDATE_USER_BY_ID_QUERY = "UPDATE users SET username = ?, email = ? WHERE id = ?";
     private static final String DELETE_USER_BY_ID_QUERY = "DELETE FROM users WHERE id = ?";
     private static final String READ_ALL_USERS_QUERY = "SELECT * FROM users";
+    private static final String DELETE_ALL_USERS_QUERY = "DELETE FROM users";
 
     public User create(User user) {
         try (Connection conn = DbUtil.connect(DATABASE)) {
@@ -76,6 +77,16 @@ public class UserDao {
             PreparedStatement statement = conn.prepareStatement(DELETE_USER_BY_ID_QUERY);
             statement.setInt(1, id);
             statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteAll() {
+        try (Connection conn = DbUtil.connect(DATABASE)) {
+            PreparedStatement statement = conn.prepareStatement(DELETE_ALL_USERS_QUERY);
+            statement.executeUpdate();
+            System.out.println("All users have just been deleted from database!");
         } catch (SQLException e) {
             e.printStackTrace();
         }
