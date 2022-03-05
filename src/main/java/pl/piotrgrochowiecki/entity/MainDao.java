@@ -4,39 +4,44 @@ import java.util.Arrays;
 
 public class MainDao {
     public static void main(String[] args) {
-//        User testUser1 = new User();
-//        testUser1.setUserName("robertos32904");
-//        testUser1.setEmail("robert121@wp.pl");
-//        testUser1.setPassword("pies123");
-//
-        UserDao userDao1 = new UserDao();
-//        userDao1.create(testUser1);
+        UserDao userDao = new UserDao();
+//        userDao.dropDatabase();
+//        userDao.createDatabase();
+//        userDao.createUsersTable();
 
-//        UserDao userDao2 = new UserDao();
-//        System.out.println("userDao2.read(4).toString() = " + userDao2.read(4).toString());
+        User user1 = new User();
+        user1.setUserName("robertos32904");
+        user1.setEmail("robert121@wp.pl");
+        user1.setPassword("piesek123");
+        userDao.create(user1);
+        System.out.println("User 1 = " + userDao.read(1).toString());
 
+        User user2 = new User();
+        user2.setUserName("Marek12");
+        user2.setEmail("biegacz432@gmail.com");
+        user2.setPassword("bieganie321");
+        userDao.create(user2);
+        System.out.println("User 2 before update = " + userDao.read(2).toString());
 
-//        User user3 = new User();
-////        user3.setUserName("Marek12");
-////        user3.setEmail("biegacz432@gmail.com");
-////        user3.setPassword("sfdvgdbdbvd");
-//
-//        UserDao userDao3 = new UserDao();
-//        //userDao3.create(user3);
-//
-//        System.out.println("userDao3.read(5).toString() = " + userDao3.read(5).toString());
-//
-//        user3.setEmail("rowerzysta150@yahoo.com");
-//        user3.setUserName("Pioter4");
-//        userDao3.update(user3);
-//
-//        System.out.println("userDao3.read(5).toString() = " + userDao3.read(5).toString());
-//
-//        userDao3.delete(5);
+        user2.setEmail("rowerzysta150@yahoo.com");
+        user2.setUserName("Pioter4");
+        userDao.update(user2);
+        System.out.println("User 2 after update = " + userDao.read(2).toString());
 
-//        User[] users = userDao1.findAll();
-//        System.out.println(Arrays.toString(users));
+        User user3 = new User();
+        user3.setUserName("Marysia38");
+        user3.setEmail("mr8244@gmail.com");
+        user3.setPassword("test3212");
+        userDao.create(user3);
 
-        userDao1.deleteAll();
+        User[] users = userDao.findAll();
+        System.out.println(Arrays.toString(users));
+
+        userDao.delete(3);
+
+        userDao.findAll();
+        System.out.println(Arrays.toString(users));
+
+//        userDao.deleteAll();
     }
 }
