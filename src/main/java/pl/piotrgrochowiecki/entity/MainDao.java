@@ -9,17 +9,11 @@ public class MainDao {
 //        userDao.createDatabase();
 //        userDao.createUsersTable();
 
-        User user1 = new User();
-        user1.setUserName("robertos32904");
-        user1.setEmail("robert121@wp.pl");
-        user1.setPassword("piesek123");
+        User user1 = new User("robertos32904", "robert121@wp.pl", "piesek123");
         userDao.create(user1);
         System.out.println("User 1 = " + userDao.read(1).toString());
 
-        User user2 = new User();
-        user2.setUserName("Marek12");
-        user2.setEmail("biegacz432@gmail.com");
-        user2.setPassword("bieganie321");
+        User user2 = new User("Marek12", "biegacz432@gmail.com", "bieganie321");
         userDao.create(user2);
         System.out.println("User 2 before update = " + userDao.read(2).toString());
 
@@ -28,10 +22,7 @@ public class MainDao {
         userDao.update(user2);
         System.out.println("User 2 after update = " + userDao.read(2).toString());
 
-        User user3 = new User();
-        user3.setUserName("Marysia38");
-        user3.setEmail("mr8244@gmail.com");
-        user3.setPassword("test3212");
+        User user3 = new User("Marysia38", "mr8244@gmail.com", "test3212");
         userDao.create(user3);
 
         User[] users = userDao.findAll();
