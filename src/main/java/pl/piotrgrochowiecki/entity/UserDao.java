@@ -10,6 +10,7 @@ public class UserDao {
 
     private static final String DATABASE = "workshop2";
     private static final String DROP_DATABASE_QUERY = "DROP DATABASE IF EXISTS ";
+    private static final String CREATE_DATABASE_QUERY = "CREATE DATABASE IF NOT EXISTS " + DATABASE + "CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
 
     private static final String CREATE_USER_QUERY = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
     private static final String READ_USER_BY_ID_QUERY = "SELECT * FROM users WHERE id = ?";
@@ -120,6 +121,15 @@ public class UserDao {
     public void dropDatabase() {
         try (Connection conn = DbUtil.connect(DATABASE)) {
             PreparedStatement statement = conn.prepareStatement(DROP_DATABASE_QUERY + DATABASE);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createDatabase() {
+        try (Connection conn = DbUtil.connect(DATABASE)) {
+            PreparedStatement statement = conn.prepareStatement(CREATE_DATABASE_QUERY);
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
