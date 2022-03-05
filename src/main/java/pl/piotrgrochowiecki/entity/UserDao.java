@@ -4,6 +4,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import pl.piotrgrochowiecki.DbUtil;
 
 import java.sql.*;
+import java.util.Arrays;
 
 public class UserDao {
 
@@ -79,4 +80,9 @@ public class UserDao {
         }
     }
 
+    private User[] addToArray(User u, User[] users) {
+        User[] tmpUsers = Arrays.copyOf(users, users.length + 1);
+        tmpUsers[users.length] = u;
+        return tmpUsers;
+    }
 }
