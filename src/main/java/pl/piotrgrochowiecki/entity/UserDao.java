@@ -14,6 +14,7 @@ public class UserDao {
     private static final String READ_USER_BY_ID_QUERY = "SELECT * FROM users WHERE id = ?";
     private static final String UPDATE_USER_BY_ID_QUERY = "UPDATE users SET username = ?, email = ? WHERE id = ?";
     private static final String DELETE_USER_BY_ID_QUERY = "DELETE FROM users WHERE id = ?";
+    private static final String READ_ALL_USERS_QUERY = "SELECT * FROM users";
 
     public User create(User user) {
         try (Connection conn = DbUtil.connect(DATABASE)) {
@@ -84,5 +85,22 @@ public class UserDao {
         User[] tmpUsers = Arrays.copyOf(users, users.length + 1);
         tmpUsers[users.length] = u;
         return tmpUsers;
+    }
+
+    public User[] findAll() {
+        try (Connection conn = DbUtil.connect(DATABASE)) {
+            PreparedStatement statement = conn.prepareStatement(READ_ALL_USERS_QUERY);
+            ResultSet resultSet = statement.executeQuery();
+            User[] users = new User[0];
+            while (resultSet.next()) {
+                int userId = resultSet.getInt("id");
+                User user = read(userId);
+                users = addToArray(user, users);
+            }
+            return users;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
