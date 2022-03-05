@@ -9,6 +9,7 @@ import java.util.Arrays;
 public class UserDao {
 
     private static final String DATABASE = "workshop2";
+    private static final String DROP_DATABASE_QUERY = "DROP DATABASE IF EXISTS ";
 
     private static final String CREATE_USER_QUERY = "INSERT INTO users(username, email, password) VALUES (?, ?, ?)";
     private static final String READ_USER_BY_ID_QUERY = "SELECT * FROM users WHERE id = ?";
@@ -114,5 +115,14 @@ public class UserDao {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void dropDatabase() {
+        try (Connection conn = DbUtil.connect(DATABASE)) {
+            PreparedStatement statement = conn.prepareStatement(DROP_DATABASE_QUERY + DATABASE);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
