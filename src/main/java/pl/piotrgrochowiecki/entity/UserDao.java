@@ -42,7 +42,7 @@ public class UserDao {
             return user;
         } catch (SQLException e) {
             e.printStackTrace();
-            return null;
+            throw new DaoException("Error while creating new user", e);
         }
     }
 
@@ -65,6 +65,7 @@ public class UserDao {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException("Error while reading the user", e);
         }
         return null;
     }
@@ -78,6 +79,7 @@ public class UserDao {
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException("Error while updating the user", e);
         }
     }
 
@@ -89,6 +91,7 @@ public class UserDao {
             System.out.println("User with id " + id + " has just been deleted!");
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException("Error while deleting the user", e);
         }
     }
 
@@ -99,6 +102,7 @@ public class UserDao {
             System.out.println("All users have just been deleted from database!");
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException("Error while deleting all users", e);
         }
     }
 
@@ -121,8 +125,8 @@ public class UserDao {
             return users;
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException("Error while finding all users", e);
         }
-        return null;
     }
 
     public void dropDatabase() {
@@ -131,6 +135,7 @@ public class UserDao {
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException("Error while dropping a database", e);
         }
     }
 
@@ -140,6 +145,7 @@ public class UserDao {
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException("Error while creating a database", e);
         }
     }
 
@@ -149,6 +155,7 @@ public class UserDao {
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+            throw new DaoException("Error while creating a table", e);
         }
     }
 }
