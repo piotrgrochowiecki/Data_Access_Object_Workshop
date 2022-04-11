@@ -140,7 +140,7 @@ public class UserDao {
     }
 
     public void createDatabase() {
-        try (Connection conn = DbUtil.connect(DATABASE)) {
+        try (Connection conn = DbUtil.connect()) {
             PreparedStatement statement = conn.prepareStatement(CREATE_DATABASE_QUERY);
             statement.executeUpdate();
         } catch (SQLException e) {
