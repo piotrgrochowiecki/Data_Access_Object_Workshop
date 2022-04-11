@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class MainDao {
     public static void main(String[] args) {
         UserDao userDao = new UserDao();
-//        userDao.dropDatabase();
+        userDao.dropDatabase();
         userDao.createDatabase();
         userDao.createUsersTable();
 
@@ -24,11 +24,15 @@ public class MainDao {
 
         User user3 = new User("testUser3", "user3@test.com", "admin");
         userDao.create(user3);
+        System.out.println("user3.getPassword() = " + user3.getPassword());
+        user3.setPassword("admin123");
+        userDao.updatePassword(user3);
+        System.out.println("user3.getPassword() = " + user3.getPassword());
 
         User[] users = userDao.findAll();
         System.out.println(Arrays.toString(users));
 
-        userDao.delete(3);
+//        userDao.delete(3);
 
         userDao.findAll();
         System.out.println(Arrays.toString(users));
